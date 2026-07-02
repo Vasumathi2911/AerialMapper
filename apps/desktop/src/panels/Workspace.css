@@ -1,0 +1,40 @@
+.workspace{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+    background:#1f1f23;
+    color:white;
+}
+
+.welcome{
+    text-align:center;
+}
+
+.welcome h1{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+.welcome p{
+    color:#c0c0c0;
+    margin-bottom:30px;
+}
+
+.welcome-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.welcome-buttons button{
+    padding:12px 22px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.welcome-buttons button:hover{
+    opacity:0.9;
+}

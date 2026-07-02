@@ -1,0 +1,13 @@
+.main-ribbon {
+    display: flex;
+    flex-direction: column;
+    background: #2d2d30;
+    border-bottom: 1px solid #444;
+}
+
+.ribbon-row {
+    display: flex;
+    gap: 10px;
+    padding: 10px 12px;
+    background: #333333;
+}

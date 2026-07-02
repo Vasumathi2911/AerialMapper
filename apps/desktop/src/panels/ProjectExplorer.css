@@ -1,0 +1,67 @@
+.project-explorer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    height:100%;
+
+    background:#2f2f34;
+
+    color:white;
+
+}
+
+.panel-title{
+
+    padding:10px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    border-bottom:1px solid #444;
+
+}
+
+.tree{
+
+    flex:1;
+
+    padding:10px;
+
+}
+
+.tree-item{
+
+    padding:8px;
+
+    cursor:pointer;
+
+    border-radius:4px;
+
+}
+
+.tree-item:hover{
+
+    background:#404040;
+
+}
+
+.project-statistics{
+
+    border-top:1px solid #444;
+
+    padding:10px;
+
+    background:#252526;
+
+}
+
+.statistics-title{
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}

@@ -1,0 +1,41 @@
+.menu-bar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    height:36px;
+
+    background:#202020;
+
+    border-bottom:1px solid #3a3a3a;
+
+    padding:0 10px;
+
+}
+
+.menu-bar button{
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    cursor:pointer;
+
+    padding:6px 10px;
+
+    border-radius:4px;
+
+    font-size:14px;
+
+}
+
+.menu-bar button:hover{
+
+    background:#3d3d3d;
+
+}
