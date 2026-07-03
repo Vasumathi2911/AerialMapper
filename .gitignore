@@ -1,0 +1,91 @@
+# ==========================================================
+# AerialMapper - .gitignore
+# ==========================================================
+
+# --------------------------
+# Python
+# --------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# --------------------------
+# Node.js / React / Electron
+# --------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build Output
+dist/
+build/
+out/
+release/
+
+# Electron
+*.asar
+
+# --------------------------
+# IDE
+# --------------------------
+.vscode/settings.json
+.idea/
+
+# --------------------------
+# Operating System
+# --------------------------
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# --------------------------
+# Logs
+# --------------------------
+*.log
+
+# --------------------------
+# Temporary Files
+# --------------------------
+*.tmp
+*.temp
+.cache/
+
+# --------------------------
+# Python Environment Files
+# --------------------------
+.python-version
+
+# --------------------------
+# Test Coverage
+# --------------------------
+htmlcov/
+.coverage
+coverage.xml
+
+# --------------------------
+# Mapping Outputs
+# (Never commit generated data)
+# --------------------------
+datasets/
+outputs/
+cache/
+tiles/
+
+# --------------------------
+# SQLite Databases
+# --------------------------
+*.db
+*.sqlite
+*.sqlite3
