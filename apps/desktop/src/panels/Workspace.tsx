@@ -1,6 +1,11 @@
 import "./Workspace.css";
 
-export default function Workspace() {
+interface WorkspaceProps {onNewProject: () => void;}
+
+export default function Workspace({
+    onNewProject
+
+}: WorkspaceProps) {
     return (
         <div className="workspace">
 
@@ -12,7 +17,9 @@ export default function Workspace() {
 
                 <div className="welcome-buttons">
 
-                    <button>📁 New Project</button>
+                    <button onClick={onNewProject}>
+                        📁 New Project
+                    </button>
 
                     <button>📂 Open Project</button>
 

@@ -1,0 +1,52 @@
+.dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog {
+    width: 480px;
+    background: #2b2b2b;
+    color: white;
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.dialog label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dialog input,
+.dialog select {
+    padding: 10px;
+}
+
+.location-row {
+    display: flex;
+    gap: 10px;
+}
+
+.location-row input {
+    flex: 1;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.dialog textarea {
+    width: 100%;
+    padding: 10px;
+    resize: vertical;
+}
