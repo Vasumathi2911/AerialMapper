@@ -1,4 +1,13 @@
 import "./Workspace.css";
+
+import { useEffect, useState } from "react";
+
+import ImageViewer from "../viewer/ImageViewer";
+
+import ProjectStore from "../store/ProjectStore";
+
+import type { Project } from "../types/Project";
+
 interface WorkspaceProps {
 
     onNewProject: () => void;
@@ -15,39 +24,77 @@ export default function Workspace({
 
 }: WorkspaceProps) {
 
-    return (
+    const [project, setProject] = useState<Project | null>(
+        ProjectStore.getProject()
+    );
 
-        <div className="workspace">
+    useEffect(() => {
 
-            <div className="welcome">
+        function handleProjectChanged(project: Project | null) {
 
-                <h1>Welcome to AerialMapper</h1>
+            setProject(project);
 
-                <p>Professional AI Powered Photogrammetry Software</p>
+        }
 
-                <div className="welcome-buttons">
+        ProjectStore.subscribe(handleProjectChanged);
 
-                    <button
-                        onClick={onNewProject}
-                    >
-                        📁 New Project
-                    </button>
+        return () => {
 
-                    <button>
-                        📂 Open Project
-                    </button>
+            ProjectStore.unsubscribe(handleProjectChanged);
 
-                    <button
-                        onClick={onImportImages}
-                    >
-                        📥 Import Images
-                    </button>
+        };
+
+    }, []);
+
+    // No Project → Welcome Screen
+
+    if (!project) {
+
+        return (
+
+            <div className="workspace">
+
+                <div className="welcome">
+
+                    <h1>Welcome to AerialMapper</h1>
+
+                    <p>Professional AI Powered Photogrammetry Software</p>
+
+                    <div className="welcome-buttons">
+
+                        <button onClick={onNewProject}>
+
+                            📁 New Project
+
+                        </button>
+
+                        <button>
+
+                            📂 Open Project
+
+                        </button>
+
+                        <button onClick={onImportImages}>
+
+                            📥 Import Images
+
+                        </button>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+        );
+
+    }
+
+    // Project Exists → Show Viewer
+
+    return (
+
+        <ImageViewer />
 
     );
 

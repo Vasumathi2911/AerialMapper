@@ -13,6 +13,11 @@ import type { Camera } from "../types/Camera";
 
 import SelectionStore from "../store/SelectionStore";
 
+import ThumbnailStore from "../store/ThumbnailStore";
+import type { Thumbnail } from "../types/Thumbnail";
+
+import ThumbnailItem from "../components/ThumbnailItem";
+
 export default function ProjectExplorer() {
 
     const [project, setProject] = useState<Project | null>(
@@ -30,6 +35,12 @@ export default function ProjectExplorer() {
     const [cameras, setCameras] = useState<Camera[]>(
 
         CameraStore.getCameras()
+
+    );
+
+    const [thumbnails, setThumbnails] = useState<Thumbnail[]>(
+
+        ThumbnailStore.getThumbnails()
 
     );
 
@@ -106,6 +117,36 @@ export default function ProjectExplorer() {
             CameraStore.unsubscribe(
 
                 handleCameraChanged
+
+            );
+
+        };
+
+    }, []);
+
+    useEffect(() => {
+
+        function handleThumbnailChanged(
+
+            thumbnails: Thumbnail[]
+
+        ) {
+
+            setThumbnails(thumbnails);
+
+        }
+
+        ThumbnailStore.subscribe(
+
+            handleThumbnailChanged
+
+        );
+
+        return () => {
+
+            ThumbnailStore.unsubscribe(
+
+                handleThumbnailChanged
 
             );
 
@@ -211,7 +252,37 @@ export default function ProjectExplorer() {
 
                                                 >
 
-                                                    🖼 {image.name}
+                                                    <ThumbnailItem
+
+                                                        imageUrl={
+
+                                                            thumbnails.find(
+
+                                                                t => t.imageId === image.id
+
+                                                            )?.url ?? ""
+
+                                                        }
+
+                                                        imageName={image.name}
+
+                                                        selected={false}
+
+                                                        onClick={() => {
+
+                                                            SelectionStore.setSelection({
+
+                                                                type: "image",
+
+                                                                id: image.id,
+
+                                                                name: image.name
+
+                                                            });
+
+                                                        }}
+
+                                                    />
 
                                                 </li>
 

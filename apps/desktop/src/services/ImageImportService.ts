@@ -1,12 +1,12 @@
 import type { ImageFile } from "../types/Image";
 
 import ImageStore from "../store/ImageStore";
-
 import ProjectStore from "../store/ProjectStore";
+import ThumbnailStore from "../store/ThumbnailStore";
 
 import FileDialogService from "./FileDialogService";
-
 import ExifService from "./ExifService";
+import ThumbnailService from "./ThumbnailService";
 
 class ImageImportService {
 
@@ -30,7 +30,7 @@ class ImageImportService {
 
                 id: crypto.randomUUID(),
 
-                file: file,
+                file,
 
                 name: file.name,
 
@@ -60,7 +60,7 @@ class ImageImportService {
 
                 focalLength: metadata?.FocalLength,
 
-                captureTime: metadata?.DateTimeOriginal,
+                captureTime: metadata?.DateTimeOriginal
 
             });
 
@@ -70,11 +70,24 @@ class ImageImportService {
 
         ImageStore.addImages(images);
 
+        ThumbnailStore.clear();
+
+        for (const image of images) {
+
+            await ThumbnailService.generate(image);
+
+        }
+
+        console.log("Generated Thumbnails:");
+
+        console.log(ThumbnailStore.getThumbnails());
+
         const project = ProjectStore.getProject();
 
         if (project) {
 
             ProjectStore.setProject({
+
                 ...project,
 
                 imageCount: images.length,

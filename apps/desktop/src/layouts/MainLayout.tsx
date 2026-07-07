@@ -16,7 +16,6 @@ import ImageImportService from "../services/ImageImportService";
 export default function MainLayout() {
 
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
-  console.log("Dialog State:", showNewProjectDialog);
   return (
     <div className="main-layout">
       <MenuBar
@@ -26,7 +25,45 @@ export default function MainLayout() {
           }}
       />
 
-      <MainRibbon />
+      <MainRibbon
+
+          onNewProject={() => {
+
+              setShowNewProjectDialog(true);
+
+          }}
+
+          onOpenProject={() => {
+
+              console.log("Open Project");
+
+          }}
+
+          onSaveProject={() => {
+
+              console.log("Save Project");
+
+          }}
+
+          onImportImages={() => {
+
+              ImageImportService.importImages();
+
+          }}
+
+          onProcess={() => {
+
+              console.log("Process");
+
+          }}
+
+          onExport={() => {
+
+              console.log("Export");
+
+          }}
+
+      />
 
       <div className="content">
 
@@ -35,21 +72,23 @@ export default function MainLayout() {
         </aside>
 
         <main className="workspace">
-          <Workspace
 
-              onNewProject={() => {
+            <Workspace
 
-                  setShowNewProjectDialog(true);
+                onNewProject={() => {
 
-              }}
+                    setShowNewProjectDialog(true);
 
-              onImportImages={() => {
+                }}
 
-                  ImageImportService.importImages();
+                onImportImages={() => {
 
-              }}
+                    ImageImportService.importImages();
 
-          />
+                }}
+
+            />
+
         </main>
 
         <aside className="right-panel">

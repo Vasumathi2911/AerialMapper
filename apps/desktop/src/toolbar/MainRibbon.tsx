@@ -1,16 +1,64 @@
 import "./MainRibbon.css";
+interface MainRibbonProps {
 
-export default function MainRibbon() {
+    onNewProject: () => void;
+
+    onOpenProject: () => void;
+
+    onSaveProject: () => void;
+
+    onImportImages: () => void;
+
+    onProcess: () => void;
+
+    onExport: () => void;
+
+}
+
+export default function MainRibbon({
+
+    onNewProject,
+
+    onOpenProject,
+
+    onSaveProject,
+
+    onImportImages,
+
+    onProcess,
+
+    onExport
+
+}: MainRibbonProps) {
     return (
         <div className="main-ribbon">
 
             <div className="ribbon-row">
-                <button>📁 New</button>
-                <button>📂 Open</button>
-                <button>💾 Save</button>
-                <button>📥 Import Images</button>
-                <button>▶ Process</button>
-                <button>📤 Export</button>
+
+                <button onClick={onNewProject}>
+                    📁 New
+                </button>
+                
+                <button onClick={onOpenProject}>
+                    📂 Open
+                </button>
+                
+                <button onClick={onSaveProject}>
+                    💾 Save
+                </button>
+                
+                <button onClick={onImportImages}>
+                    📥 Import Images
+                </button>
+                
+                <button onClick={onProcess}>
+                    ▶ Process
+                </button>
+                
+                <button onClick={onExport}>
+                    📤 Export
+                </button>
+            
             </div>
 
         </div>
