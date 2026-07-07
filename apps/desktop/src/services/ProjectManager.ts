@@ -26,23 +26,27 @@ class ProjectManager {
 
            modifiedAt: new Date(),
 
+           version: "0.1.0",
+
            imageCount: 0,
 
            chunkCount: 0,
 
-           version: "0.1.0"
-
         };
 
-        ProjectStore.setCurrentProject(project);
+        ProjectStore.setProject(project);
 
+        console.log("Creating Project...");
+        
         console.log(project);
+
+        return project;
 
     }
 
     getCurrentProject() {
 
-        return ProjectStore.getCurrentProject();
+        return ProjectStore.getProject();
 
     }
 

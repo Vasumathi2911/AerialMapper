@@ -7,9 +7,11 @@ import MainRibbon from "../toolbar/MainRibbon";
 import ProjectExplorer from "../panels/ProjectExplorer";
 import Workspace from "../panels/Workspace";
 import BottomDock from "../docks/BottomDock";
-
 import NewProjectDialog from "../dialogs/NewProjectDialog";
 import ProjectManager from "../services/ProjectManager";
+import PropertiesPanel from "../panels/PropertiesPanel";
+import ImageImportService from "../services/ImageImportService";
+
 
 export default function MainLayout() {
 
@@ -34,12 +36,24 @@ export default function MainLayout() {
 
         <main className="workspace">
           <Workspace
-              onNewProject={() => setShowNewProjectDialog(true)}
+
+              onNewProject={() => {
+
+                  setShowNewProjectDialog(true);
+
+              }}
+
+              onImportImages={() => {
+
+                  ImageImportService.importImages();
+
+              }}
+
           />
         </main>
 
         <aside className="right-panel">
-          Properties
+            <PropertiesPanel />
         </aside>
 
       </div>

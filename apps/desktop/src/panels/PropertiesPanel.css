@@ -1,0 +1,53 @@
+.properties-panel {
+
+    height: 100%;
+
+    background: #252526;
+
+    color: white;
+
+    padding: 12px;
+
+    overflow: auto;
+
+}
+
+.properties-panel h3 {
+
+    margin-bottom: 12px;
+
+    border-bottom: 1px solid #444;
+
+    padding-bottom: 8px;
+
+}
+
+.properties-panel table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+.properties-panel td {
+
+    padding: 8px 4px;
+
+    vertical-align: top;
+
+    border-bottom: 1px solid #3a3a3a;
+
+    word-break: break-word;
+
+}
+
+.properties-panel td:first-child {
+
+    width: 40%;
+
+    color: #9cdcfe;
+
+    font-weight: bold;
+
+}

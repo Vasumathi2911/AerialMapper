@@ -1,12 +1,22 @@
 import "./Workspace.css";
+interface WorkspaceProps {
 
-interface WorkspaceProps {onNewProject: () => void;}
+    onNewProject: () => void;
+
+    onImportImages: () => void;
+
+}
 
 export default function Workspace({
-    onNewProject
+
+    onNewProject,
+
+    onImportImages
 
 }: WorkspaceProps) {
+
     return (
+
         <div className="workspace">
 
             <div className="welcome">
@@ -17,18 +27,28 @@ export default function Workspace({
 
                 <div className="welcome-buttons">
 
-                    <button onClick={onNewProject}>
+                    <button
+                        onClick={onNewProject}
+                    >
                         📁 New Project
                     </button>
 
-                    <button>📂 Open Project</button>
+                    <button>
+                        📂 Open Project
+                    </button>
 
-                    <button>📥 Import Images</button>
+                    <button
+                        onClick={onImportImages}
+                    >
+                        📥 Import Images
+                    </button>
 
                 </div>
 
             </div>
 
         </div>
+
     );
+
 }
