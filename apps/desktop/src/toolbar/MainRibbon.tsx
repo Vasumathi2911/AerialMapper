@@ -9,7 +9,7 @@ interface MainRibbonProps {
 
     onImportImages: () => void;
 
-    onProcess: () => void;
+    onAnalyzeImages: () => void;
 
     onExport: () => void;
 
@@ -25,7 +25,7 @@ export default function MainRibbon({
 
     onImportImages,
 
-    onProcess,
+    onAnalyzeImages,
 
     onExport
 
@@ -51,8 +51,8 @@ export default function MainRibbon({
                     📥 Import Images
                 </button>
                 
-                <button onClick={onProcess}>
-                    ▶ Process
+                <button onClick={onAnalyzeImages}>
+                    🔍 Analyze
                 </button>
                 
                 <button onClick={onExport}>

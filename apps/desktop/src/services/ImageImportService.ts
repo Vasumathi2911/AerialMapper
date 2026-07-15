@@ -1,3 +1,6 @@
+import CameraService from "../camera/services/CameraService";
+import CameraEngineStore from "../camera/store/CameraEngineStore";
+import type { CameraModel } from "../camera/models/CameraModel";
 import type { ImageFile } from "../types/Image";
 
 import ImageStore from "../store/ImageStore";
@@ -7,6 +10,8 @@ import ThumbnailStore from "../store/ThumbnailStore";
 import FileDialogService from "./FileDialogService";
 import ExifService from "./ExifService";
 import ThumbnailService from "./ThumbnailService";
+import SurveyController from "../survey/SurveyController";
+import ImageValidator from "../image/utils/ImageValidator";
 
 class ImageImportService {
 
@@ -25,8 +30,44 @@ class ImageImportService {
         for (const file of files) {
 
             const metadata = await ExifService.read(file);
+            const cameraModelName = metadata?.Model ?? "Unknown Camera";
+            const manufacturer = metadata?.Make ?? "Unknown Manufacturer";
 
-            images.push({
+            let camera = CameraService.getCameraByModel(cameraModelName);
+
+            if (!camera) {
+
+                camera = {
+
+                    id: crypto.randomUUID(),
+
+                    manufacturer,
+
+                    model: cameraModelName,
+
+                    sensorWidth: 0,
+
+                    sensorHeight: 0,
+
+                    imageWidth: metadata?.ExifImageWidth ?? 0,
+
+                    imageHeight: metadata?.ExifImageHeight ?? 0,
+
+                    focalLength: Number(metadata?.FocalLength) || 0,
+
+                    createdAt: new Date(),
+
+                    updatedAt: new Date()
+
+                } satisfies CameraModel;
+
+                CameraService.registerCamera(camera);
+
+                CameraEngineStore.addCamera(camera);
+
+            }
+
+            const image: ImageFile = {
 
                 id: crypto.randomUUID(),
 
@@ -62,23 +103,37 @@ class ImageImportService {
 
                 captureTime: metadata?.DateTimeOriginal
 
-            });
+            };
+
+            if (!ImageValidator.isValid(image)) {
+
+                console.warn(
+
+        `           Skipping invalid image: ${image.name}`
+
+                );
+
+                continue;
+
+            }
+
+            images.push(image);
 
         }
 
         ImageStore.clear();
 
+        ThumbnailStore.clear();
+
         ImageStore.addImages(images);
 
-        ThumbnailStore.clear();
+        SurveyController.buildCameraPositions();
 
         for (const image of images) {
 
             await ThumbnailService.generate(image);
 
         }
-
-        console.log("Generated Thumbnails:");
 
         console.log(ThumbnailStore.getThumbnails());
 

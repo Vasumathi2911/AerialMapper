@@ -11,7 +11,7 @@ import NewProjectDialog from "../dialogs/NewProjectDialog";
 import ProjectManager from "../services/ProjectManager";
 import PropertiesPanel from "../panels/PropertiesPanel";
 import ImageImportService from "../services/ImageImportService";
-
+import VisionController from "../vision/controllers/VisionController";
 
 export default function MainLayout() {
 
@@ -51,9 +51,9 @@ export default function MainLayout() {
 
           }}
 
-          onProcess={() => {
+          onAnalyzeImages={async () => {
 
-              console.log("Process");
+              await VisionController.analyzeMission();
 
           }}
 
